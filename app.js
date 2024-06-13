@@ -3,19 +3,19 @@ const animals = [
   {
     name: 'Tammy',
     emoji: '🐅',
-    hungerLevel: 99,
+    hungerLevel: 10,
     mood: '😀'
   },
   {
     name: 'Ben',
     emoji: '🦛',
-    hungerLevel: 80,
+    hungerLevel: 10,
     mood: '😊'
   },
   {
     name: 'Melchizedek',
     emoji: '🐢',
-    hungerLevel: 20,
+    hungerLevel: 10,
     mood: '😑'
   }
 ]
@@ -81,6 +81,12 @@ function feedTammy() {
 function feedAnimal(animalName) {
   const foundAnimal = animals.find((animal) => animal.name == animalName)
   console.log(`We found an animal with the name of ${animalName}!`, foundAnimal);
+
+  if (foundAnimal.hungerLevel <= 0) {
+    // NOTE hard stop the function
+    return
+  }
+
   foundAnimal.hungerLevel++
   if (foundAnimal.hungerLevel > 100) {
     // NOTE clamp down value to 100
@@ -109,4 +115,4 @@ drawAnimals()
 // setInterval(() => { console.log('running interval') }, 1000)
 
 // the first argument passed to setInterval should be the instructions for what it should call
-setInterval(decreaseAnimalsHunger, 100)
+setInterval(decreaseAnimalsHunger, 1000)
