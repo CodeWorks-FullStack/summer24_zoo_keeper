@@ -83,8 +83,15 @@ function feedAnimal(animalName) {
   console.log(`We found an animal with the name of ${animalName}!`, foundAnimal);
   foundAnimal.hungerLevel++
   if (foundAnimal.hungerLevel > 100) {
+    // NOTE clamp down value to 100
     foundAnimal.hungerLevel = 100
   }
+  drawAnimals()
+}
+
+function decreaseAnimalsHunger() {
+  console.log('decreasing animal hunger!');
+  animals.forEach((animal) => animal.hungerLevel--)
   drawAnimals()
 }
 
@@ -92,3 +99,9 @@ function feedAnimal(animalName) {
 // ANCHOR function calls (page load)
 
 drawAnimals()
+
+// NOTE runs the function passed as the first argument every 1000 milliseconds
+// setInterval(() => { console.log('running interval') }, 1000)
+
+// the first argument passed to setInterval should be the instructions for what it should call
+setInterval(decreaseAnimalsHunger, 1000)
