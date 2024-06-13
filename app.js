@@ -66,6 +66,10 @@ function drawMoney() {
   const moneyElement = document.getElementById('cashMoney')
   // toFixed adds specified amount of decimal places after value (3.00)
   moneyElement.innerText = money.toFixed(2)
+  if (money < 0) {
+    moneyElement.style.color = 'red'
+    // moneyElement.classList.add('text-danger')
+  }
 }
 
 function feedTammy() {
@@ -149,8 +153,20 @@ function checkAnimalsMoodAndPayAccordingly() {
         money += 80
         break;
 
+      case '😑':
+        money += 60
+        break;
+
+      case '☹️':
+        money += .25
+        break;
+
+      case '😩':
+        money -= 20
+        break;
+
       default:
-        console.log('did not get paid, baby', money)
+        money -= 50
         break;
     }
   })
@@ -158,7 +174,35 @@ function checkAnimalsMoodAndPayAccordingly() {
   drawMoney()
 }
 
+function tranquilizeAnimal(animalName) {
+  // Does not open context menu when right clicked
+  event.preventDefault()
 
+  // NOTE these checks only work because the tranquilizer ALWAYS costs 50. If you have something where the price increases, you might check to see what the price of said thing is....
+  if (money < 50) {
+    window.alert("YOU ARE TOO BROKE DAWG GET GUD")
+    return
+  }
+  money -= 50
+
+  drawMoney()
+
+  // REVIEW goofy code below, you probably don't need this for the checkpoint
+  const animalElement = document.getElementById(animalName)
+  // querySelectorAll returns an array of all elements that match selector
+  const marqueeElements = animalElement.querySelectorAll('marquee')
+  console.log(marqueeElements);
+  marqueeElements.forEach((marqueeElement) => {
+    marqueeElement.scrollAmount = 2
+  })
+
+  // setTimeout call the supplied function after 3000 milliseconds, only once
+  setTimeout(() => {
+    marqueeElements.forEach((marqueeElement) => {
+      marqueeElement.scrollAmount = 10
+    })
+  }, 3000)
+}
 
 
 // ANCHOR function calls (page load)
@@ -169,6 +213,6 @@ drawAnimals()
 // setInterval(() => { console.log('running interval') }, 1000)
 
 // the first argument passed to setInterval should be the instructions for what it should call
-setInterval(decreaseAnimalsHunger, 1000)
+setInterval(decreaseAnimalsHunger, 500)
 
 setInterval(checkAnimalsMoodAndPayAccordingly, 3000)

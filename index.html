@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="en">
+<!-- NOTE dark mode -->
+<html lang="en" data-bs-theme="dark">
 
 <head>
   <meta charset="UTF-8">
@@ -31,7 +32,9 @@
             <div class="animal-pen rounded jungle-bg">
               <marquee behavior="alternate" direction="down">
                 <marquee behavior="alternate" direction="right">
-                  <p onclick="feedAnimal('Tammy')" class="m-0 animal" role="button">🐅</p>
+                  <p onclick="feedAnimal('Tammy')" oncontextmenu="tranquilizeAnimal('Tammy')" class="m-0 animal"
+                    role="button">
+                    🐅</p>
                 </marquee>
               </marquee>
             </div>
@@ -45,7 +48,8 @@
             <div class="animal-pen rounded river-bg">
               <marquee behavior="alternate" direction="up" scrollamount="12">
                 <marquee behavior="alternate" direction="left">
-                  <p onclick="feedAnimal('Ben')" class="m-0 animal" role="button">🦛</p>
+                  <p onclick="feedAnimal('Ben')" oncontextmenu="tranquilizeAnimal('Ben')" class="m-0 animal"
+                    role="button">🦛</p>
                 </marquee>
               </marquee>
             </div>
@@ -59,7 +63,8 @@
             <div class="animal-pen rounded ocean-bg">
               <marquee behavior="alternate" direction="down" scrollamount="2">
                 <marquee behavior="alternate" direction="left" scrollamount="2">
-                  <p onclick="feedAnimal('Melchizedek')" class="m-0 animal" role="button">🐢</p>
+                  <p onclick="feedAnimal('Melchizedek')" oncontextmenu="tranquilizeAnimal('Melchizedek')"
+                    class="m-0 animal" role="button">🐢</p>
                 </marquee>
               </marquee>
             </div>
