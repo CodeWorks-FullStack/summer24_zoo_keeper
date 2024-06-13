@@ -3,22 +3,24 @@ const animals = [
   {
     name: 'Tammy',
     emoji: '🐅',
-    hungerLevel: 10,
+    hungerLevel: 100,
     mood: '😀'
   },
   {
     name: 'Ben',
     emoji: '🦛',
-    hungerLevel: 10,
-    mood: '😊'
+    hungerLevel: 100,
+    mood: '😀'
   },
   {
     name: 'Melchizedek',
     emoji: '🐢',
-    hungerLevel: 10,
-    mood: '😑'
+    hungerLevel: 100,
+    mood: '😀'
   }
 ]
+
+let money = 0
 
 
 // ANCHOR function definitions
@@ -49,7 +51,6 @@ function drawTammy() {
 }
 
 
-
 function drawAnimals() {
   animals.forEach((animal) => {
     const animalElement = document.getElementById(animal.name)
@@ -59,6 +60,12 @@ function drawAnimals() {
     // @ts-ignore
     animalStatsElement.innerText = `${animal.name} | ${animal.hungerLevel} | ${animal.mood}`
   })
+}
+
+function drawMoney() {
+  const moneyElement = document.getElementById('cashMoney')
+  // toFixed adds specified amount of decimal places after value (3.00)
+  moneyElement.innerText = money.toFixed(2)
 }
 
 function feedTammy() {
@@ -80,7 +87,7 @@ function feedTammy() {
 
 function feedAnimal(animalName) {
   const foundAnimal = animals.find((animal) => animal.name == animalName)
-  console.log(`We found an animal with the name of ${animalName}!`, foundAnimal);
+  // console.log(`We found an animal with the name of ${animalName}!`, foundAnimal);
 
   if (foundAnimal.hungerLevel <= 0) {
     // NOTE hard stop the function
@@ -96,9 +103,10 @@ function feedAnimal(animalName) {
 }
 
 function decreaseAnimalsHunger() {
-  console.log('decreasing animal hunger!');
+  // console.log('decreasing animal hunger!');
   animals.forEach((animal) => {
     animal.hungerLevel--
+
 
     if (animal.hungerLevel <= 0) {
       // clamp
@@ -130,6 +138,28 @@ function decreaseAnimalsHunger() {
   drawAnimals()
 }
 
+function checkAnimalsMoodAndPayAccordingly() {
+  animals.forEach((animal) => {
+    switch (animal.mood) {
+      case '😀':
+        money += 100
+        break;
+
+      case '😊':
+        money += 80
+        break;
+
+      default:
+        console.log('did not get paid, baby', money)
+        break;
+    }
+  })
+
+  drawMoney()
+}
+
+
+
 
 // ANCHOR function calls (page load)
 
@@ -140,3 +170,5 @@ drawAnimals()
 
 // the first argument passed to setInterval should be the instructions for what it should call
 setInterval(decreaseAnimalsHunger, 1000)
+
+setInterval(checkAnimalsMoodAndPayAccordingly, 3000)
