@@ -53,12 +53,29 @@ function drawTammy() {
 function drawAnimals() {
   animals.forEach((animal) => {
     const animalElement = document.getElementById(animal.name)
-    console.log('animal element', animalElement);
+    // console.log('animal element', animalElement);
     const animalStatsElement = animalElement.querySelector('.stats')
-    console.log('animal stats', animalStatsElement);
+    // console.log('animal stats', animalStatsElement);
     // @ts-ignore
     animalStatsElement.innerText = `${animal.name} | ${animal.hungerLevel} | ${animal.mood}`
   })
+}
+
+function feedTammy() {
+  // ✅ console log when button is clicked
+  console.log('feeding tammy');
+  // get tammy out of array
+  const tammy = animals.find((animal) => animal.name == 'Tammy')
+  // make hunger go up
+  tammy.hungerLevel++
+  if (tammy.hungerLevel > 100) {
+    // NOTE clamp down the value
+    tammy.hungerLevel = 100
+  }
+
+  console.log('here is tammy', tammy);
+  // update HTML
+  drawAnimals()
 }
 
 
