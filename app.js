@@ -91,7 +91,12 @@ function feedAnimal(animalName) {
 
 function decreaseAnimalsHunger() {
   console.log('decreasing animal hunger!');
-  animals.forEach((animal) => animal.hungerLevel--)
+  animals.forEach((animal) => {
+    animal.hungerLevel--
+    if (animal.hungerLevel <= 0) {
+      animal.hungerLevel = 0
+    }
+  })
   drawAnimals()
 }
 
@@ -104,4 +109,4 @@ drawAnimals()
 // setInterval(() => { console.log('running interval') }, 1000)
 
 // the first argument passed to setInterval should be the instructions for what it should call
-setInterval(decreaseAnimalsHunger, 1000)
+setInterval(decreaseAnimalsHunger, 100)
