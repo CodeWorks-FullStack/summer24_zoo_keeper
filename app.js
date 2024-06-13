@@ -1,3 +1,4 @@
+// ANCHOR global variables
 const animals = [
   {
     name: 'Tammy',
@@ -20,6 +21,8 @@ const animals = [
 ]
 
 
+// ANCHOR function definitions
+// NOTE no longer needed, wrote reusable drawAnimals
 function drawTammy() {
   // ✅ get tammy's html element
   const tammyElement = document.getElementById('tammy')
@@ -45,30 +48,20 @@ function drawTammy() {
   tammyStatsElement.innerText = `${tammy.name} | ${tammy.hungerLevel} | ${tammy.mood}`
 }
 
-function drawBen() {
-  // get element
-  const benElement = document.getElementById('ben')
-  // look through the ben element for the first element with the class of stats
-  const benStatsElement = benElement.querySelector('.stats')
-  console.log('ben', benElement);
-  console.log('ben stats', benStatsElement);
-  // get object
-  const ben = animals.find((animal) => animal.name == 'Ben')
-  // update element
-  // @ts-ignore
-  benStatsElement.innerText = `${ben.name} | ${ben.hungerLevel} | ${ben.mood}`
+
+
+function drawAnimals() {
+  animals.forEach((animal) => {
+    const animalElement = document.getElementById(animal.name)
+    console.log('animal element', animalElement);
+    const animalStatsElement = animalElement.querySelector('.stats')
+    console.log('animal stats', animalStatsElement);
+    // @ts-ignore
+    animalStatsElement.innerText = `${animal.name} | ${animal.hungerLevel} | ${animal.mood}`
+  })
 }
 
-function drawMelchizedek() {
-  // get element
-  const melchizedekElement = document.getElementById('melchizedek')
-  // look through the melchizedek element for the first element with the class of stats
-  const melchizedekStatsElement = melchizedekElement.querySelector('.stats')
-  console.log('melchizedek', melchizedekElement);
-  console.log('melchizedek stats', melchizedekStatsElement);
-  // get object
-  const melchizedek = animals.find((animal) => animal.name == 'Melchizedek')
-  // update element
-  // @ts-ignore
-  melchizedekStatsElement.innerText = `${melchizedek.name} | ${melchizedek.hungerLevel} | ${melchizedek.mood}`
-}
+
+// ANCHOR function calls (page load)
+
+drawAnimals()
