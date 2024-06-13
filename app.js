@@ -99,9 +99,33 @@ function decreaseAnimalsHunger() {
   console.log('decreasing animal hunger!');
   animals.forEach((animal) => {
     animal.hungerLevel--
+
     if (animal.hungerLevel <= 0) {
+      // clamp
       animal.hungerLevel = 0
+      animal.mood = '💀'
     }
+
+    if (animal.hungerLevel > 0) {
+      animal.mood = '😩'
+    }
+
+    if (animal.hungerLevel > 20) {
+      animal.mood = '☹️'
+    }
+
+    if (animal.hungerLevel > 40) {
+      animal.mood = '😑'
+    }
+
+    if (animal.hungerLevel > 60) {
+      animal.mood = '😊'
+    }
+
+    if (animal.hungerLevel > 80) {
+      animal.mood = '😀'
+    }
+
   })
   drawAnimals()
 }
