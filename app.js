@@ -78,6 +78,16 @@ function feedTammy() {
   drawAnimals()
 }
 
+function feedAnimal(animalName) {
+  const foundAnimal = animals.find((animal) => animal.name == animalName)
+  console.log(`We found an animal with the name of ${animalName}!`, foundAnimal);
+  foundAnimal.hungerLevel++
+  if (foundAnimal.hungerLevel > 100) {
+    foundAnimal.hungerLevel = 100
+  }
+  drawAnimals()
+}
+
 
 // ANCHOR function calls (page load)
 
